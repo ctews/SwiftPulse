@@ -12,7 +12,7 @@ I just needed the single pulse animation (left one of the image) and decided to 
 2. Init LFTPulseAnimation (e.g. with its custom constructor) and add it to the view
 
 ```swift
-pulseEffect = LFTPulseAnimation(repeatCount: Float.infinity, radius:20, position:iv.center)
+pulseEffect = LFTPulseAnimation(repeatCount: Float.infinity, radius:20, position:imageView.center)
 view.layer.insertSublayer(self.pulseEffect, below: imageView.layer)
 ```
 
