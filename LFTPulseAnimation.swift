@@ -32,7 +32,7 @@ class LFTPulseAnimation: CALayer {
         
         Async.background {
             self.setupAnimationGroup()
-            self.setRadius(self.radius)
+            self.setPulseRadius(self.radius)
             
             if (self.pulseInterval != Double.infinity) {
                 Async.main {
@@ -46,7 +46,7 @@ class LFTPulseAnimation: CALayer {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setRadius(radius: CGFloat) {
+    func setPulseRadius(radius: CGFloat) {
         self.radius = radius
         var tempPos = self.position
         var diameter = self.radius * 2
