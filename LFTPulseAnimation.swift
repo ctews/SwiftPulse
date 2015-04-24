@@ -20,6 +20,12 @@ class LFTPulseAnimation: CALayer {
     var animationGroup:         CAAnimationGroup = CAAnimationGroup()
     var repetitions:            Float = Float.infinity
 
+    // Need to implement that, because otherwise it can't find
+    // the constructor init(layer:AnyObject!)
+    // Doesn't seem to look in the super class
+    override init!(layer: AnyObject!) {
+        super.init(layer: layer)
+    }
     
     init(repeatCount: Float=Float.infinity, radius: CGFloat, position: CGPoint) {
         super.init()
