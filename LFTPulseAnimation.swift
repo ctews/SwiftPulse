@@ -23,7 +23,7 @@ class LFTPulseAnimation: CALayer {
     // Need to implement that, because otherwise it can't find
     // the constructor init(layer:AnyObject!)
     // Doesn't seem to look in the super class
-    override init!(layer: AnyObject!) {
+    override init(layer: AnyObject) {
         super.init(layer: layer)
     }
     
@@ -36,16 +36,16 @@ class LFTPulseAnimation: CALayer {
         self.repetitions = repeatCount;
         self.position = position
         
-        Async.background {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
             self.setupAnimationGroup()
             self.setPulseRadius(self.radius)
             
             if (self.pulseInterval != Double.infinity) {
-                Async.main {
+                dispatch_async(dispatch_get_main_queue(), {
                     self.addAnimation(self.animationGroup, forKey: "pulse")
-                }
+                })
             }
-        }
+        })
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -54,8 +54,8 @@ class LFTPulseAnimation: CALayer {
     
     func setPulseRadius(radius: CGFloat) {
         self.radius = radius
-        var tempPos = self.position
-        var diameter = self.radius * 2
+        let tempPos = self.position
+        let diameter = self.radius * 2
         
         self.bounds = CGRect(x: 0.0, y: 0.0, width: diameter, height: diameter)
         self.cornerRadius = self.radius
@@ -69,7 +69,7 @@ class LFTPulseAnimation: CALayer {
         self.animationGroup.removedOnCompletion = false
         
         if self.useTimingFunction {
-            var defaultCurve = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+            let defaultCurve = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
             self.animationGroup.timingFunction = defaultCurve
         }
         
@@ -77,7 +77,7 @@ class LFTPulseAnimation: CALayer {
     }
     
     func createScaleAnimation() -> CABasicAnimation {
-        var scaleAnimation = CABasicAnimation(keyPath: "transform.scale.xy")
+        let scaleAnimation = CABasicAnimation(keyPath: "transform.scale.xy")
         scaleAnimation.fromValue = NSNumber(float: self.fromValueForRadius)
         scaleAnimation.toValue = NSNumber(float: 1.0)
         scaleAnimation.duration = self.animationDuration
@@ -86,7 +86,7 @@ class LFTPulseAnimation: CALayer {
     }
     
     func createOpacityAnimation() -> CAKeyframeAnimation {
-        var opacityAnimation = CAKeyframeAnimation(keyPath: "opacity")
+        let opacityAnimation = CAKeyframeAnimation(keyPath: "opacity")
         opacityAnimation.duration = self.animationDuration
         opacityAnimation.values = [self.fromValueForAlpha, 0.8, 0]
         opacityAnimation.keyTimes = [0, self.keyTimeForHalfOpacity, 1]
