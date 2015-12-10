@@ -41,9 +41,6 @@ For more adjustment just look in the code, it's very easy to understand and shou
 ## Issues & PRs
 If someone is interested in porting the multiple pulse effect before I will do it just let me know or do a Pull Request ;)
 
-### Additional Info
-I used the [Async](https://github.com/duemunk/Async) library which adds sugar for GCD in Swift. So if you wonder about the ```Async.background``` it's just a wrapped GCD call. :)
-
 # Special Thanks
 Special thanks to @shu223 for [PulsingHalo](https://github.com/shu223/PulsingHalo)!
 
