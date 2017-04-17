@@ -18,23 +18,23 @@ view.layer.insertSublayer(self.pulseEffect, below: imageView.layer)
 
 # Customization
 
-##radius
+## radius
 Use the radius property to set the max size of the pulse effect.
 
 ```swift
 pulseEffect.radius = 60
 ```
 
-##color
+## color
 This is is basically a subclass of CALayer so you can access the _backgroundColor_ attribute of CALayer and set it like you are used to it.
 
-##animation duration
+## animation duration
 Use ```self.animationDuration``` to set the duration of one animation cycle. Use the ```self.pulseInterval``` property to add an interval to the duration.
 
-##animation repeat count
+## animation repeat count
 Initialize using ```LFTPulseAnimation(repeatCount: Float.infinity, radius:20, position:iv.center)``` to set the repeat count or use the ```repeatCount``` property
 
-##more properties
+## more properties
 For more adjustment just look in the code, it's very easy to understand and should be seld documenting.
 
 
